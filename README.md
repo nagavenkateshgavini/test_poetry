@@ -46,7 +46,6 @@
    Scenario 
    - Imagine you have a Python project with the following dependencies specified in pyproject.toml:
    
-   toml
    ```[tool.poetry.dependencies]
    python = "^3.9"
    flask = "^2.0"
@@ -57,16 +56,11 @@
    Flask might depend on Werkzeug, Jinja2, Click, etc.
    Let's say Flask 2.0 depends on `Jinja2>=2.11.`
 
-   Requests' Dependencies:
-   Requests might depend on urllib3, chardet, etc.
-
-   Let's say Requests 2.25 has a sub-dependency on urllib3<1.27.
-
    ### Potential Conflict:
-   Imagine there's a package SomeLib that also depends on Jinja2 but requires a version of Jinja2<2.11 for some reason. 
+   Imagine there's a package SomeLib that also depends on Jinja2 but requires a version of `Jinja2<2.11` for some reason. 
    This creates a potential conflict because:
    
-   Flask 2.0 requires Jinja2>=2.11. 
+   Flask 2.0 requires Jinja2>=2.11.
    SomeLib requires Jinja2<2.11.
 
    ### With Poetry's Dependency Resolution:
@@ -79,7 +73,8 @@
    
    #### Resulting poetry.lock File:
    
-   The poetry.lock file will contain the exact versions of Flask, Requests, and their compatible sub-dependencies (Werkzeug, Jinja2, urllib3, etc.), ensuring that this combination will work without issues in any environment.
+   The poetry.lock file will contain the exact versions of Flask, Requests, and their compatible sub-dependencies 
+   (Werkzeug, Jinja2, urllib3, SomeLib etc.), ensuring that this combination will work without issues in any environment.
 
    ### With pip freeze (Snapshot):
 
